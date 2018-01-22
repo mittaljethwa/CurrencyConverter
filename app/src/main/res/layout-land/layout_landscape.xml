@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="@string/usd_label_text" />
+
+        <EditText
+            android:id="@+id/usdInputId"
+            android:layout_height="match_parent"
+            android:layout_width="200dp"
+            android:hint="@string/usd_amount_hint"
+            android:inputType="numberDecimal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="@string/inr_label_text"/>
+
+        <EditText
+            android:id="@+id/inrInputId"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:hint="@string/inr_amount_hint"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/convertButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:padding="15dp"
+        android:text="@string/convert_button" />
+
+
+</LinearLayout>
