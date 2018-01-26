@@ -1,9 +1,9 @@
 package com.bignerdranch.android.currencyconverter;
 
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -18,14 +18,30 @@ public class CurrencyConverterActivity extends AppCompatActivity {
     EditText inrAmountObject = null;
     TextWatcher inrInputListener = null;
     TextWatcher usdInputListener = null;
+    double usdAmount;
+    double inrAmount;
+    String usdSavedValue;
+    String inrSavedValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_currency_converter);
+        setContentView(R.layout.layout);
 
         Button convert_button = (Button) findViewById(R.id.convertButtonId);
         usdAmountObject = (EditText) findViewById(R.id.usdInputId);
         inrAmountObject = (EditText) findViewById(R.id.inrInputId);
+
+
+        if(savedInstanceState != null) {
+            double amounts[];
+            amounts = savedInstanceState.getDoubleArray(usdSavedValue);
+            Log.d("MJ","USD Value on create(OLD):" + amounts[0]);
+            Log.d("MJ","INR Value on create(OLD):" + amounts[1]);
+            usdAmount = amounts[0];
+            inrAmount = amounts[1];
+
+        }
 
         convert_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,11 +55,11 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                     return;
                 }
                 else if(!usdAmountString.isEmpty()) {
-                    double usdAmount = Double.parseDouble(usdAmountObject.getText().toString());
+                    usdAmount = Double.parseDouble(usdAmountObject.getText().toString());
                     convertUsdToInr(usdAmount);
                 }
                 else if(!inrAmountString.isEmpty()) {
-                    double inrAmount = Double.parseDouble(inrAmountObject.getText().toString());
+                    inrAmount = Double.parseDouble(inrAmountObject.getText().toString());
                     convertInrToUsd(inrAmount);
                 }
                 else {
@@ -106,7 +122,35 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
     }
 
-    private void disableEdit(EditText objectToDisable,TextWatcher listenerName) {
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i("MJ", "onSaveInstanceState");
+        double amounts[]=new double[2];
+        Log.i("MJ: savedInstance Value",savedInstanceState.toString());
+
+            amounts[0] = usdAmount;
+            amounts[1] = inrAmount;
+            Log.d("MJ","USD Value on save:" + usdAmount);
+            Log.d("MJ","INR Value on save:" + inrAmount);
+            savedInstanceState.putDoubleArray(usdSavedValue,amounts);
+
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i("MJ", "onRestoreInstanceState");
+        double amounts[] = savedInstanceState.getDoubleArray(usdSavedValue);
+        Log.d("MJ","Double array:" + savedInstanceState.getDoubleArray(usdSavedValue).toString());
+        Log.d("MJ","USD Value on restore:" + amounts[0]);
+        Log.d("MJ","INR Value on restore:" + amounts[1]);
+        usdAmountObject.setText(String.format("%.2f",amounts[0]));
+        inrAmountObject.setText(String.format("%.2f",amounts[1]));
+    }
+
+    private void disableEdit(EditText objectToDisable, TextWatcher listenerName) {
         objectToDisable.setFocusable(false);
         objectToDisable.setEnabled(false);
         objectToDisable.setCursorVisible(false);
@@ -119,14 +163,14 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         objectToEnable.setFocusable(true);
         objectToEnable.setCursorVisible(true);
     }
-    private void convertUsdToInr(double usdAmount) {
-        double inrAmount = usdAmount * 63.89;
+    private void convertUsdToInr(double usdValue) {
+        inrAmount = usdValue * 63.89;
 //        inrAmountObject.setText(Double.toString(inrAmount));
         inrAmountObject.setText(String.format("%.2f",inrAmount));
     }
 
-    private void convertInrToUsd(double inrAmount) {
-        double usdAmount = inrAmount / 63.89;
+    private void convertInrToUsd(double inrValue) {
+        usdAmount = inrValue / 63.89;
 //        usdAmountObject.setText(Double.toString(usdAmount));
         usdAmountObject.setText(String.format("%.2f",usdAmount));
     }
