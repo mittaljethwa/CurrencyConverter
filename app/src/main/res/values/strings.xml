@@ -5,4 +5,6 @@
     <string name="convert_button">Convert</string>
     <string name="usd_amount_hint">USD Amount</string>
     <string name="inr_amount_hint">INR Amount</string>
+    <string name="alertEitherFields">Please enter amount in either of the two fields</string>
+    <string name="alertInvalidInput">Please enter valid amount</string>
 </resources>
