@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">CurrencyConverter</string>
-    <string name="usd_label_text">USD</string>
-    <string name="inr_label_text">INR</string>
-    <string name="convert_button">Convert</string>
-    <string name="usd_amount_hint">USD Amount</string>
-    <string name="inr_amount_hint">INR Amount</string>
+    <string name="usdLabelText">USD</string>
+    <string name="inrLabelText">INR</string>
+    <string name="convertButtonText">Convert</string>
+    <string name="usdAmountHint">USD Amount</string>
+    <string name="inrAmountHint">INR Amount</string>
     <string name="alertEitherFields">Please enter amount in either of the two fields</string>
     <string name="alertInvalidInput">Please enter valid amount</string>
 </resources>

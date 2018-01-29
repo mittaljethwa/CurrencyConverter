@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/convert_button"
+        android:text="@string/convertButtonText"
         android:textSize="15sp" />
 
     <LinearLayout
@@ -24,13 +24,13 @@
             android:layout_height="wrap_content"
             android:padding="24dp"
             android:textSize="20sp"
-            android:text="@string/usd_label_text" />
+            android:text="@string/usdLabelText" />
 
         <EditText
             android:id="@+id/usdInputId"
             android:layout_height="match_parent"
             android:layout_width="150dp"
-            android:hint="@string/usd_amount_hint"
+            android:hint="@string/usdAmountHint"
             android:inputType="numberDecimal"/>
 
     </LinearLayout>
@@ -47,13 +47,13 @@
             android:layout_height="wrap_content"
             android:padding="24dp"
             android:textSize="20sp"
-            android:text="@string/inr_label_text" />
+            android:text="@string/inrLabelText" />
 
         <EditText
             android:id="@+id/inrInputId"
             android:layout_height="match_parent"
             android:layout_width="150dp"
-            android:hint="@string/inr_amount_hint"
+            android:hint="@string/inrAmountHint"
             android:inputType="numberDecimal"/>
 
     </LinearLayout>
